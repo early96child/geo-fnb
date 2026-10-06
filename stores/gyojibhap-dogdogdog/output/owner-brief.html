@@ -1,0 +1,136 @@
+<title>교집합·도그도그도그 GEO 제안</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=IBM+Plex+Sans+KR:wght@400;600&display=swap">
+<style>
+/* 레이아웃: 한 줄 세로 흐름. 메뉴판처럼 굵은 제목, 단계는 실제 순서라 번호 사용 */
+:root{
+  --bg:#f6f3ef; --surface:#fffdfa; --fg:#221d1a; --muted:#6e6259; --line:#e3dcd3;
+  --accent:#8a4b16; --accent-soft:#f3e3d1; --ok:#2f7a4f; --warn:#a4561b;
+  --display:"Do Hyeon","IBM Plex Sans KR",system-ui,sans-serif;
+  --body:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#191513; --surface:#221d1a; --fg:#f1ebe4; --muted:#b0a397; --line:#3a322c;
+  --accent:#e8a565; --accent-soft:#3b2a1c; --ok:#7cc59a; --warn:#e2a06a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#191513; --surface:#221d1a; --fg:#f1ebe4; --muted:#b0a397; --line:#3a322c;
+  --accent:#e8a565; --accent-soft:#3b2a1c; --ok:#7cc59a; --warn:#e2a06a; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.7}
+.wrap{max-width:720px;margin:0 auto;padding-inline:20px;padding-block:40px 64px;display:grid;gap:56px}
+h1,h2{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.25}
+h1{font-size:clamp(2rem,7vw,2.9rem)} h2{font-size:1.7rem}
+p{margin:0} section{display:grid;gap:16px;min-width:0}
+.eyebrow{font-size:.8rem;letter-spacing:.08em;color:var(--accent);font-weight:600}
+.lead{font-size:1.15rem;color:var(--muted)}
+.big{font-size:1.2rem}
+.chat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:12px}
+.bubble{padding:10px 14px;border-radius:12px;max-width:85%;width:fit-content}
+.q{background:var(--accent-soft);justify-self:end}
+.a{background:var(--bg);border:1px solid var(--line)}
+.a b{color:var(--accent)}
+.cap{font-size:.85rem;color:var(--muted)}
+ul{margin:0;padding-left:1.2em;display:grid;gap:6px}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:14px;counter-reset:s}
+ol.steps li{display:grid;grid-template-columns:2.4rem 1fr;gap:12px;align-items:start;counter-increment:s}
+ol.steps li::before{content:counter(s);font-family:var(--display);font-size:1.5rem;color:var(--accent);line-height:1.2}
+ol.steps strong{display:block}
+.tag{font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:2px;white-space:nowrap}
+.done{color:var(--ok);border:1px solid var(--ok)} .todo{color:var(--warn);border:1px solid var(--warn)}
+.store{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:10px}
+.store h3{margin:0;font-family:var(--display);font-weight:400;font-size:1.35rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--accent-soft);padding:4px 12px;border-radius:99px;font-size:.92rem}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:.85rem}
+td.pend{color:var(--muted)}
+.check{display:grid;gap:8px}
+.check label{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.check input{margin-top:6px;accent-color:var(--accent)}
+.check small{color:var(--muted);display:block}
+.note{border-left:3px solid var(--accent);padding:4px 0 4px 14px;color:var(--muted)}
+input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+
+<div class="wrap">
+
+<header style="display:grid;gap:14px">
+  <p class="eyebrow">교집합 · 도그도그도그 한남 대표님께</p>
+  <h1>AI가 우리 가게를<br>추천하게 만드는 일</h1>
+  <p class="lead">이걸 GEO라고 부릅니다. 무엇을 하는지, 대표님이 무엇을 해주시면 되는지 정리했습니다.</p>
+</header>
+
+<section>
+  <p class="eyebrow">왜 필요한가</p>
+  <h2>손님이 검색창 대신 AI에게 묻습니다</h2>
+  <div class="chat" aria-label="예시 대화">
+    <div class="bubble q">이태원 2차 갈 만한 분위기 좋은 곳 추천해줘</div>
+    <div class="bubble a">AI가 가게 몇 곳을 골라 답합니다.<br>여기에 <b>교집합</b>이 들어가야 합니다.</div>
+  </div>
+  <p class="cap">예시 화면입니다. 실제 AI 답변이 아닙니다.</p>
+  <p>네이버 검색은 목록을 보여줍니다. AI는 몇 곳만 골라서 말해줍니다. 그 몇 곳에 들지 못하면 손님 눈에 아예 안 보입니다.</p>
+</section>
+
+<section>
+  <p class="eyebrow">AI는 어떻게 고르나</p>
+  <h2>인터넷에 있는 정보로 고릅니다</h2>
+  <p>AI는 웹에 있는 글을 읽고 정리해서 답합니다. 그래서 세 가지가 중요합니다.</p>
+  <ul>
+    <li><strong>정보가 있어야 합니다.</strong> 주소, 영업시간, 메뉴가 없으면 추천하기 어렵습니다.</li>
+    <li><strong>정확하고 같아야 합니다.</strong> 곳마다 말이 다르면 믿기 어렵습니다.</li>
+    <li><strong>여러 곳에서 말해야 합니다.</strong> 블로그, 지도, 인스타에서 같은 이야기가 반복되면 더 잘 인용되는 경향이 있습니다.</li>
+  </ul>
+</section>
+
+<section>
+  <p class="eyebrow">우리 가게</p>
+  <h2>이 질문에 나오는 게 목표입니다</h2>
+  <div class="store"><h3>교집합</h3><p>이태원에서 친구와 편하게 만나기 좋은, 낮은 조명의 아시안 퓨전 비스트로 바.</p><p class="cap">손님이 AI에게 물을 법한 질문</p><div class="chips"><span class="chip">이태원 분위기 좋은 술집</span><span class="chip">이태원 2차</span><span class="chip">이태원 아시안 퓨전</span><span class="chip">이태원 데이트</span></div></div>
+<div class="store"><h3>도그도그도그 한남</h3><p>한남동에서 가볍게 한 끼 하기 좋은 수제 핫도그집, 반려견 동반 가능.</p><p class="cap">손님이 AI에게 물을 법한 질문</p><div class="chips"><span class="chip">한남동 혼밥</span><span class="chip">한남동 간단한 점심</span><span class="chip">이태원 핫도그</span><span class="chip">한남동 반려견 동반 식당</span></div></div>
+</section>
+
+<section>
+  <p class="eyebrow">진행 순서</p>
+  <h2>네 단계로 갑니다</h2>
+  <ol class="steps">
+    <li><span><strong>정보 확정 <span class="tag todo">대표님 확인 필요</span></strong>주소, 영업시간, 메뉴 같은 기본 정보를 대표님께 확인받습니다. 확인 안 된 내용은 어디에도 쓰지 않습니다.</span></li>
+    <li><span><strong>공식 소개 페이지 <span class="tag done">초안 완료</span></strong>가게마다 한 페이지를 만들었습니다. 사람이 읽는 글과 AI가 바로 읽는 정보 카드가 함께 들어 있습니다. 공개는 정보 확정 후에 합니다.</span></li>
+    <li><span><strong>같은 문장 퍼뜨리기 <span class="tag todo">준비 중</span></strong>네이버 플레이스, 카카오맵, 인스타, 구글 지도 소개글을 같은 문장으로 맞춥니다. 블로거에게 줄 안내문도 만듭니다.</span></li>
+    <li><span><strong>매달 측정 <span class="tag todo">준비 중</span></strong>ChatGPT와 Perplexity에 위 질문을 직접 던지고, 우리 가게가 나오는지 기록합니다.</span></li>
+  </ol>
+</section>
+
+<section>
+  <p class="eyebrow">이렇게 보고드립니다</p>
+  <h2>매달 이 표를 채웁니다</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>질문</th><th>ChatGPT</th><th>Perplexity</th></tr></thead>
+    <tbody><tr><td>이태원 분위기 좋은 술집</td><td class="pend">첫 측정 전</td><td class="pend">첫 측정 전</td></tr>
+<tr><td>이태원 2차</td><td class="pend">첫 측정 전</td><td class="pend">첫 측정 전</td></tr>
+<tr><td>한남동 혼밥</td><td class="pend">첫 측정 전</td><td class="pend">첫 측정 전</td></tr>
+<tr><td>한남동 간단한 점심</td><td class="pend">첫 측정 전</td><td class="pend">첫 측정 전</td></tr></tbody>
+  </table></div>
+  <p class="cap">질문 일부만 보여드렸습니다. 첫 측정 결과가 출발점입니다. 이후 달마다 비교합니다.</p>
+</section>
+
+<section>
+  <p class="eyebrow">대표님께 부탁</p>
+  <h2>이것만 확인해 주세요</h2>
+  <p>아래는 아직 확인 안 된 내용입니다. 맞는지, 틀리면 무엇인지 알려주세요.</p>
+  <div class="check"><label for="c0"><input type="checkbox" id="c0"><span>교집합 인스타 계정<small>@gyojibhap_itaewon 이 맞나요?</small></span></label>
+<label for="c1"><input type="checkbox" id="c1"><span>교집합 기본 정보<small>주소, 영업시간, 전화, 대표 메뉴, 가격대를 알려주세요.</small></span></label>
+<label for="c2"><input type="checkbox" id="c2"><span>도그도그도그 주소<small>서울 용산구 이태원로54가길 14 가 맞나요?</small></span></label>
+<label for="c3"><input type="checkbox" id="c3"><span>도그도그도그 운영 방식<small>브레이크타임 없음, 반려견 동반, 포장·배달 가능, 주차 불가. 모두 맞나요?</small></span></label>
+<label for="c4"><input type="checkbox" id="c4"><span>도그도그도그 기본 정보<small>영업시간, 전화, 대표 메뉴, 가격대, 인스타 계정을 알려주세요.</small></span></label></div>
+  <p class="cap">체크 표시는 이 화면에서만 보입니다. 저장되거나 전달되지 않습니다.</p>
+</section>
+
+<section>
+  <p class="eyebrow">미리 말씀드릴 것</p>
+  <h2>보장은 아닙니다. 대신 숫자로 보여드립니다.</h2>
+  <p class="note">AI가 어떤 가게를 추천할지는 우리가 정할 수 없습니다. 할 수 있는 건 AI가 우리 가게를 정확히 알도록 정보를 깔아두는 것입니다. 효과가 있는지는 매달 측정표로 확인합니다.</p>
+</section>
+
+</div>
