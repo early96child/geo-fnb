@@ -29,12 +29,20 @@
 - [ ] 사진 촬영 요청 포인트
 
 ## 3. 매장별 원페이지 + JSON-LD + FAQ
-매장별로 `output/site/index.html` 작성. GitHub Pages로 배포.
-- [ ] 한 페이지 소개 (짧은 문장)
-- [ ] schema.org `Restaurant` JSON-LD (verified:true 값만)
-- [ ] FAQ + `FAQPage` JSON-LD
-- [ ] GitHub Pages 배포 설정 (그룹별 경로 분리)
-- [ ] Rich Results Test로 검증
+`python3 tools/build_site.py` 실행. `store-info.json`에서 페이지를 만든다.
+출력: `stores/<group>/output/site/<store-id>/index.html`
+- [x] 한 페이지 소개 (짧은 문장)
+- [x] schema.org `Restaurant` JSON-LD (verified:true 값만)
+- [x] FAQ + `FAQPage` JSON-LD (verified:true 답변만)
+- [x] GitHub Pages 워크플로 (`.github/workflows/pages.yml`, 그룹별 경로 분리)
+- [ ] 저장소 Settings > Pages > Source를 "GitHub Actions"로 설정 (사람이 해야 함)
+- [ ] 배포 후 Rich Results Test로 검증
+- [ ] 0번 확인 후 `verified`를 true로 바꾸고 다시 빌드
+
+배포 주소: `/<group>/<store-id>/`
+- `/gyojibhap-dogdogdog/gyojibhap/`
+- `/gyojibhap-dogdogdog/dogdogdog/`
+- `/jangjakjip/jangjakjip/`
 
 ## 4. AI 노출 측정
 OpenAI·Perplexity API로 `queries.txt` 질문을 던진다. 답변에 매장이 언급됐는지 기록한다.
