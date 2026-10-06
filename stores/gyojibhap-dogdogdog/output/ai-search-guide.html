@@ -1,0 +1,174 @@
+<title>교집합·도그도그도그 AI 검색 가이드</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=IBM+Plex+Sans+KR:wght@400;600;700&display=swap">
+<style>
+/* 레이아웃: 읽는 가이드. 한 줄 흐름, 비교·기준은 2~3열 그리드, 폰에서는 1열 */
+:root{
+  --bg:#f6f3ef; --surface:#fffdfa; --fg:#221d1a; --muted:#6c6158; --line:#e2dad0;
+  --accent:#8a4b16; --accent-soft:#f3e3d1; --no:#a3321f; --no-soft:#f7e1dc;
+  --display:"Do Hyeon","IBM Plex Sans KR",system-ui,sans-serif;
+  --body:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#191513; --surface:#231e1b; --fg:#f1ebe4; --muted:#b2a598; --line:#3a322c;
+  --accent:#e8a565; --accent-soft:#3b2a1c; --no:#f09a86; --no-soft:#3a201b; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#191513; --surface:#231e1b; --fg:#f1ebe4; --muted:#b2a598; --line:#3a322c;
+  --accent:#e8a565; --accent-soft:#3b2a1c; --no:#f09a86; --no-soft:#3a201b; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding-inline:20px;padding-block:44px 72px;display:grid;gap:60px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.25}
+h1{font-size:clamp(2.1rem,7.5vw,3.1rem)} h2{font-size:1.75rem} h3{font-size:1.3rem}
+p{margin:0} section{display:grid;gap:18px;min-width:0}
+.eyebrow{font-size:.8rem;letter-spacing:.08em;color:var(--accent);font-weight:700}
+.lead{font-size:1.12rem;color:var(--muted)}
+.cap{font-size:.85rem;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--accent-soft);padding:5px 13px;border-radius:99px;font-size:.95rem}
+.chip.store{background:transparent;border:1px solid var(--line);color:var(--muted);font-size:.8rem;padding:2px 10px}
+.qgroup{display:grid;gap:8px}
+.vs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:10px;align-content:start;min-width:0}
+.panel .label{font-size:.8rem;font-weight:700;color:var(--muted);letter-spacing:.04em}
+.fake{display:grid;gap:6px}
+.fake span{height:10px;border-radius:5px;background:var(--line)}
+.fake span.hit{background:var(--accent)}
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.three .panel p:first-of-type{font-family:var(--display);font-size:1.25rem}
+ol.todo{list-style:none;margin:0;padding:0;display:grid;gap:28px;counter-reset:t}
+ol.todo>li{display:grid;grid-template-columns:2.6rem 1fr;gap:14px;counter-increment:t}
+ol.todo>li::before{content:counter(t);font-family:var(--display);font-size:1.9rem;color:var(--accent);line-height:1.1}
+ol.todo>li>div{display:grid;gap:10px;min-width:0}
+ul{margin:0;padding-left:1.15em;display:grid;gap:5px}
+.example{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:6px}
+.example .label{font-size:.78rem;font-weight:700;color:var(--accent);letter-spacing:.04em}
+.example q{quotes:none;font-weight:600}
+.donts{display:grid;gap:10px}
+.dont{background:var(--no-soft);border-radius:12px;padding:12px 16px;display:grid;gap:2px}
+.dont b{color:var(--no)}
+.week{background:var(--accent-soft);border-radius:16px;padding:22px;display:grid;gap:14px}
+.week label{display:flex;gap:10px;align-items:flex-start}
+.week input{margin-top:6px;accent-color:var(--accent);width:18px;height:18px;flex:none}
+input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.note{border-left:3px solid var(--accent);padding:4px 0 4px 14px}
+</style>
+
+<div class="wrap">
+
+<header style="display:grid;gap:14px">
+  <p class="eyebrow">교집합 · 도그도그도그 한남</p>
+  <h1>AI 검색에서<br>우리 가게가 나오려면</h1>
+  <p class="lead">“요즘은 다 AI한테 맛집 물어보지 않나?” 하신 질문에 대한 정리입니다.</p>
+</header>
+
+<section>
+  <p class="eyebrow">맞습니다</p>
+  <h2>손님은 이렇게 묻습니다</h2>
+  <div class="qgroup"><span class="chip store">교집합</span><div class="chips"><span class="chip">“이태원 분위기 좋은 술집”</span><span class="chip">“이태원 2차”</span><span class="chip">“이태원 아시안 퓨전”</span><span class="chip">“이태원 데이트”</span></div></div>
+<div class="qgroup"><span class="chip store">도그도그도그 한남</span><div class="chips"><span class="chip">“한남동 혼밥”</span><span class="chip">“한남동 간단한 점심”</span><span class="chip">“이태원 핫도그”</span><span class="chip">“한남동 반려견 동반 식당”</span></div></div>
+  <p>다만 AI는 검색과 보여주는 방식이 다릅니다.</p>
+  <div class="vs">
+    <div class="panel">
+      <span class="label">포털 검색</span>
+      <div class="fake" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <p>목록을 길게 보여줍니다. 손님이 스크롤하며 고릅니다.</p>
+    </div>
+    <div class="panel">
+      <span class="label">AI 검색</span>
+      <div class="fake" aria-hidden="true"><span class="hit"></span><span class="hit"></span><span class="hit"></span></div>
+      <p>AI가 몇 곳만 골라 이유와 함께 추천합니다. 여기 못 들면 안 보입니다.</p>
+    </div>
+  </div>
+  <p class="cap">이해를 돕는 그림입니다. 실제 화면이 아닙니다.</p>
+</section>
+
+<section>
+  <p class="eyebrow">AI가 고르는 기준</p>
+  <h2>AI는 인터넷에 쌓인 글을 보고 고릅니다</h2>
+  <div class="three">
+    <div class="panel"><p>정보가 있나</p><p>영업시간, 메뉴, 가격이 없으면 추천하기 어렵습니다.</p></div>
+    <div class="panel"><p>정보가 맞나</p><p>네이버, 카카오, 구글 내용이 서로 다르면 덜 믿습니다.</p></div>
+    <div class="panel"><p>여러 곳에서 말하나</p><p>리뷰, 블로그, 인스타에서 같은 얘기가 반복될수록 잘 인용되는 경향이 있습니다.</p></div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">방법</p>
+  <h2>이 순서로 하시면 됩니다</h2>
+  <p class="cap">위에서부터 효과가 크고 바로 할 수 있는 순서입니다.</p>
+  <ol class="todo">
+    <li><div>
+      <h3>지도 3곳 정보를 꽉 채우고 똑같이 맞추기</h3>
+      <p>네이버 플레이스, 카카오맵, 구글 비즈니스 프로필. AI마다 참고하는 곳이 달라서 세 곳 다 챙겨야 합니다.</p>
+      <ul>
+        <li>영업시간, 브레이크타임, 휴무일</li>
+        <li>메뉴와 가격 (사진 메뉴판 말고 글자로)</li>
+        <li>주차, 예약, 포장·배달, 반려동물 같은 편의 정보</li>
+        <li>매장·음식 사진 최근 것으로</li>
+      </ul>
+    </div></li>
+    <li><div>
+      <h3>소개글에 손님이 검색하는 말 넣기</h3>
+      <p>AI는 질문과 비슷한 말이 있는 가게를 찾습니다. 소개글 첫 문장이 가장 중요합니다.</p>
+      <div class="example"><span class="label">교집합 소개글 예시</span><q>이태원에서 친구와 편하게 만나기 좋은, 낮은 조명의 아시안 퓨전 비스트로 바.</q></div>
+<div class="example"><span class="label">도그도그도그 한남 소개글 예시</span><q>한남동에서 가볍게 한 끼 하기 좋은 수제 핫도그집, 반려견 동반 가능.</q></div>
+      <p>넣으면 좋은 말</p>
+      <ul><li><b>교집합</b>: 이태원, 분위기 좋은 술집, 2차, 아시안 퓨전, 데이트, 친구랑</li>
+<li><b>도그도그도그 한남</b>: 한남동, 혼밥, 간단한 점심, 수제 핫도그, 반려견 동반</li></ul>
+    </div></li>
+    <li><div>
+      <h3>리뷰에 그 말이 자연스럽게 나오게 하기</h3>
+      <p>AI는 리뷰도 읽습니다. “분위기 좋다”보다 “2차로 좋다”, “회식하기 좋다”처럼 상황이 담긴 리뷰가 질문과 잘 맞습니다.</p>
+      <ul>
+        <li>리뷰는 꾸준히 받는 게 중요합니다. 한 번에 몰아서 받지 않습니다.</li>
+        <li>답글을 달면서 상황을 한 번 더 적어줍니다.</li>
+      </ul>
+      <div class="example"><span class="label">답글 예시</span><ul><li>“2차로 들러주셔서 감사해요. 다음에도 편하게 오세요.”</li>
+<li>“혼밥으로 가볍게 드시기 좋게 준비할게요.”</li></ul></div>
+    </div></li>
+    <li><div>
+      <h3>블로그·인스타에서 같은 이야기 반복되게 하기</h3>
+      <p>체험단이나 인플루언서를 부를 때 정확한 정보와 키워드를 같이 전달합니다.</p>
+      <ul>
+        <li>가게 이름 표기를 하나로 통일 (띄어쓰기까지)</li>
+        <li>주소·영업시간은 지도와 같은 내용으로</li>
+        <li>“어떤 상황에 좋은 곳인지” 한 줄을 꼭 넣어달라고 요청</li>
+        <li>협찬 글은 ‘협찬’ 표시를 꼭 넣어달라고 요청</li>
+      </ul>
+    </div></li>
+    <li><div>
+      <h3>한 달에 한 번 직접 물어보기</h3>
+      <p>ChatGPT, Perplexity, 네이버 검색의 AI 답변에 손님처럼 물어봅니다. 예: “이태원 분위기 좋은 술집 추천해줘”</p>
+      <p>우리 가게가 나오는지, 나온다면 어떻게 소개되는지 적어둡니다. 틀린 정보가 나오면 그 정보가 어디서 왔는지 찾아 고칩니다.</p>
+    </div></li>
+  </ol>
+</section>
+
+<section>
+  <p class="eyebrow">주의</p>
+  <h2>이건 하지 마세요</h2>
+  <div class="donts">
+    <div class="dont"><b>가짜 리뷰, 리뷰 구매</b><span>플랫폼 정책 위반입니다. 걸리면 노출이 오히려 줄어듭니다.</span></div>
+    <div class="dont"><b>키워드 도배</b><span>소개글에 검색어만 나열하면 사람도 AI도 안 좋아합니다. 문장으로 씁니다.</span></div>
+    <div class="dont"><b>곳마다 다른 정보</b><span>영업시간이 바뀌면 세 곳을 한 번에 고칩니다.</span></div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">기대치</p>
+  <h2>바로 뜨지는 않습니다</h2>
+  <p class="note">AI가 어떤 가게를 추천할지는 누구도 정할 수 없습니다. 할 수 있는 건 AI가 우리 가게를 정확히, 자주 보게 만드는 것입니다. 보통 몇 달은 꾸준히 쌓아야 합니다.</p>
+</section>
+
+<section>
+  <div class="week">
+    <h2>이번 주에 할 것 세 가지</h2>
+    <label for="w0"><input type="checkbox" id="w0"><span>네이버 플레이스·카카오맵·구글 정보가 서로 같은지 확인하기 (두 매장 모두)</span></label>
+<label for="w1"><input type="checkbox" id="w1"><span>소개글 첫 문장을 위 예시처럼 바꾸기</span></label>
+<label for="w2"><input type="checkbox" id="w2"><span>ChatGPT에 “이태원 2차 추천해줘”, “한남동 혼밥 추천해줘” 물어보고 결과 캡처해두기</span></label>
+    <p class="cap">체크 표시는 이 화면에서만 보이고 저장되지 않습니다.</p>
+  </div>
+</section>
+
+</div>
