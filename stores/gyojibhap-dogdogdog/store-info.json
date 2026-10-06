@@ -1,0 +1,42 @@
+{
+  "group": "A",
+  "group_note": "교집합과 도그도그도그 한남은 대표가 동일. 장작집(B 그룹) 내용과 섞지 않는다.",
+  "stores": [
+    {
+      "id": "gyojibhap",
+      "name": "교집합",
+      "category": { "value": "이태원 아시안 퓨전 비스트로/바", "verified": true },
+      "tone": { "value": "낮은 조도, 높은 온도", "verified": true },
+      "one_liner": { "value": "이태원에서 친구와 편하게 만나기 좋은, 낮은 조명의 아시안 퓨전 비스트로 바.", "verified": true },
+      "instagram": { "value": "@gyojibhap_itaewon", "verified": false },
+      "address": { "value": "[확인 필요]", "verified": false },
+      "hours": { "value": "[확인 필요]", "verified": false },
+      "phone": { "value": "[확인 필요]", "verified": false },
+      "menu_highlights": { "value": "[확인 필요]", "verified": false },
+      "price_range": { "value": "[확인 필요]", "verified": false }
+    },
+    {
+      "id": "dogdogdog",
+      "name": "도그도그도그 한남",
+      "category": { "value": "수제 핫도그", "verified": true },
+      "one_liner": { "value": "한남동에서 가볍게 한 끼 하기 좋은 수제 핫도그집, 반려견 동반 가능.", "verified": true },
+      "address": { "value": "서울 용산구 이태원로54가길 14", "verified": false },
+      "break_time": { "value": "없음", "verified": false },
+      "pet_friendly": { "value": "반려견 동반 가능", "verified": false },
+      "takeout_delivery": { "value": "포장·배달 가능", "verified": false },
+      "parking": { "value": "주차 불가", "verified": false },
+      "instagram": { "value": "[확인 필요]", "verified": false },
+      "hours": { "value": "[확인 필요]", "verified": false },
+      "phone": { "value": "[확인 필요]", "verified": false },
+      "menu_highlights": { "value": "[확인 필요]", "verified": false },
+      "price_range": { "value": "[확인 필요]", "verified": false }
+    }
+  ],
+  "popup": {
+    "name": "장작집합",
+    "date": { "value": "2026-08-16", "verified": true },
+    "participants": "교집합 × 장작집",
+    "note": "날짜가 이미 지났다. 후속 여부·장소는 [확인 필요]. 상대 매장 이름 외 정보는 이 폴더에 적지 않는다.",
+    "details": { "value": "[확인 필요]", "verified": false }
+  }
+}

@@ -1,0 +1,9 @@
+# 형식: 매장ID | 질문
+gyojibhap | 이태원 분위기 좋은 술집
+gyojibhap | 이태원 2차
+gyojibhap | 이태원 아시안 퓨전
+gyojibhap | 이태원 데이트
+dogdogdog | 한남동 혼밥
+dogdogdog | 한남동 간단한 점심
+dogdogdog | 이태원 핫도그
+dogdogdog | 한남동 반려견 동반 식당

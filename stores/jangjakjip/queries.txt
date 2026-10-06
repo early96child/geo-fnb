@@ -1,0 +1,5 @@
+# 형식: 매장ID | 질문
+jangjakjip | 연남동 통닭 맛집
+jangjakjip | 연남동 단체 회식
+jangjakjip | 연남동 맥주 한잔
+jangjakjip | 홍대 연남 웨이팅 없는 맛집

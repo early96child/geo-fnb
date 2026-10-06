@@ -1,0 +1,28 @@
+{
+  "group": "B",
+  "group_note": "장작집은 대표가 별도. A 그룹(교집합·도그도그도그 한남) 내용과 섞지 않는다.",
+  "stores": [
+    {
+      "id": "jangjakjip",
+      "name": "장작집",
+      "category": { "value": "장작구이 통닭, KOREAN OLDSCHOOL BBQ", "verified": true },
+      "one_liner": { "value": "연남동에서 장작 향 가득한 누룽지 통닭과 생맥주로 친구들과 모이기 좋은 한국식 올드스쿨 바비큐집.", "verified": true },
+      "branch": { "value": "연남 본점", "verified": false },
+      "address": { "value": "서울 마포구 월드컵북로6길 19", "verified": false },
+      "menu_highlights": { "value": "누룽지 통닭, 돼지갈비, 생맥주", "verified": false },
+      "reservation": { "value": "예약 가능", "verified": false },
+      "parking": { "value": "주차 가능", "verified": false },
+      "instagram": { "value": "[확인 필요]", "verified": false },
+      "hours": { "value": "[확인 필요]", "verified": false },
+      "phone": { "value": "[확인 필요]", "verified": false },
+      "price_range": { "value": "[확인 필요]", "verified": false }
+    }
+  ],
+  "popup": {
+    "name": "장작집합",
+    "date": { "value": "2026-08-16", "verified": true },
+    "participants": "장작집 × 교집합",
+    "note": "날짜가 이미 지났다. 후속 여부·장소는 [확인 필요]. 상대 매장 이름 외 정보는 이 폴더에 적지 않는다.",
+    "details": { "value": "[확인 필요]", "verified": false }
+  }
+}
