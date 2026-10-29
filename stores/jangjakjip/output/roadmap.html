@@ -1,0 +1,100 @@
+<title>장작집 앞으로 할 일</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=IBM+Plex+Sans+KR:wght@400;600;700&display=swap">
+<style>
+/* 레이아웃: 읽는 가이드. 한 줄 흐름, 비교·기준은 2~3열 그리드, 폰에서는 1열 */
+:root{
+  --bg:#f6f3ef; --surface:#fffdfa; --fg:#221d1a; --muted:#6c6158; --line:#e2dad0;
+  --accent:#9a3412; --accent-soft:#f6dfd3; --no:#a3321f; --no-soft:#f7e1dc;
+  --display:"Do Hyeon","IBM Plex Sans KR",system-ui,sans-serif;
+  --body:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#191513; --surface:#231e1b; --fg:#f1ebe4; --muted:#b2a598; --line:#3a322c;
+  --accent:#f08a5d; --accent-soft:#3d2219; --no:#f09a86; --no-soft:#3a201b; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#191513; --surface:#231e1b; --fg:#f1ebe4; --muted:#b2a598; --line:#3a322c;
+  --accent:#f08a5d; --accent-soft:#3d2219; --no:#f09a86; --no-soft:#3a201b; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding-inline:20px;padding-block:44px 72px;display:grid;gap:60px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.25}
+h1{font-size:clamp(2.1rem,7.5vw,3.1rem)} h2{font-size:1.75rem} h3{font-size:1.3rem}
+p{margin:0} section{display:grid;gap:18px;min-width:0}
+.eyebrow{font-size:.8rem;letter-spacing:.08em;color:var(--accent);font-weight:700}
+.lead{font-size:1.12rem;color:var(--muted)}
+.cap{font-size:.85rem;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--accent-soft);padding:5px 13px;border-radius:99px;font-size:.95rem}
+.chip.store{background:transparent;border:1px solid var(--line);color:var(--muted);font-size:.8rem;padding:2px 10px}
+.qgroup{display:grid;gap:8px}
+.vs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:10px;align-content:start;min-width:0}
+.panel .label{font-size:.8rem;font-weight:700;color:var(--muted);letter-spacing:.04em}
+.fake{display:grid;gap:6px}
+.fake span{height:10px;border-radius:5px;background:var(--line)}
+.fake span.hit{background:var(--accent)}
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.three .panel p:first-of-type{font-family:var(--display);font-size:1.25rem}
+ol.todo{list-style:none;margin:0;padding:0;display:grid;gap:28px;counter-reset:t}
+ol.todo>li{display:grid;grid-template-columns:2.6rem 1fr;gap:14px;counter-increment:t}
+ol.todo>li::before{content:counter(t);font-family:var(--display);font-size:1.9rem;color:var(--accent);line-height:1.1}
+ol.todo>li>div{display:grid;gap:10px;min-width:0}
+ul{margin:0;padding-left:1.15em;display:grid;gap:5px}
+.example{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:6px}
+.example .label{font-size:.78rem;font-weight:700;color:var(--accent);letter-spacing:.04em}
+.example q{quotes:none;font-weight:600}
+.donts{display:grid;gap:10px}
+.dont{background:var(--no-soft);border-radius:12px;padding:12px 16px;display:grid;gap:2px}
+.dont b{color:var(--no)}
+.week{background:var(--accent-soft);border-radius:16px;padding:22px;display:grid;gap:14px}
+.week label{display:flex;gap:10px;align-items:flex-start}
+.week input{margin-top:6px;accent-color:var(--accent);width:18px;height:18px;flex:none}
+input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.note{border-left:3px solid var(--accent);padding:4px 0 4px 14px}
+</style>
+
+
+<style>
+/* 로드맵: 기간별 묶음. 기간은 실제 순서라 세로 타임라인으로 */
+.phase{display:grid;grid-template-columns:1.1rem 1fr;gap:16px}
+.rail{display:grid;justify-items:center;grid-template-rows:auto 1fr}
+.dot{width:14px;height:14px;border-radius:50%;background:var(--accent);margin-top:10px}
+.line{width:2px;background:var(--line)}
+.phase:last-child .line{background:transparent}
+.phase-body{display:grid;gap:14px;padding-bottom:36px;min-width:0}
+.when{font-size:.8rem;font-weight:700;letter-spacing:.06em;color:var(--accent)}
+.tasks{display:grid;gap:10px}
+.task{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:6px;min-width:0}
+.task-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.task-head b{font-size:1.02rem}
+.who{font-size:.75rem;font-weight:700;padding:2px 10px;border-radius:99px;white-space:nowrap}
+.who.owner{background:var(--accent);color:var(--surface)}
+.who.me{border:1px solid var(--accent);color:var(--accent)}
+.who.both{border:1px dashed var(--muted);color:var(--muted)}
+.task p,.task li{color:var(--muted);font-size:.95rem}
+.legend{display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-size:.9rem;color:var(--muted)}
+</style>
+
+<div class="wrap" style="gap:44px">
+<header style="display:grid;gap:14px">
+  <p class="eyebrow">장작집</p>
+  <h1>AI 검색 노출,<br>앞으로 할 일</h1>
+  <p class="lead">AI가 우리 가게를 정확히 알고 추천하게 만드는 순서입니다. 기간별로 누가 무엇을 하는지 정리했습니다.</p>
+  <div class="legend"><span class="who owner">사장님</span>직접 해주실 일 <span class="who me">제가</span>제가 준비할 일 <span class="who both">같이</span>함께 할 일</div>
+</header>
+<section style="gap:0"><div class="phase"><div class="rail"><span class="dot"></span><span class="line"></span></div><div class="phase-body"><span class="when">이번 주</span><h2>정보부터 확정합니다</h2><div class="tasks"><div class="task"><div class="task-head"><b>장작집 정보 확인</b><span class="who owner">사장님</span></div><ul><li>지점명: 연남 본점 맞는지</li><li>주소: 서울 마포구 월드컵북로6길 19 맞는지</li><li>대표 메뉴: 누룽지 통닭, 돼지갈비, 생맥주 맞는지</li><li>예약 가능, 주차 가능 맞는지</li></ul></div><div class="task"><div class="task-head"><b>빠진 정보 알려주기</b><span class="who owner">사장님</span></div><ul><li>영업시간, 전화번호</li><li>가격대</li><li>인스타 계정</li></ul></div><div class="task"><div class="task-head"><b>지도 3곳 관리 권한 확인</b><span class="who owner">사장님</span></div><p>네이버, 카카오, 구글에 등록돼 있는지, 사장님 계정으로 수정할 수 있는지 봐주세요.</p></div></div></div></div>
+<div class="phase"><div class="rail"><span class="dot"></span><span class="line"></span></div><div class="phase-body"><span class="when">이번 달</span><h2>기본을 깔아둡니다</h2><div class="tasks"><div class="task"><div class="task-head"><b>지도 3곳 정보 맞추기</b><span class="who both">같이</span></div><p>네이버 플레이스, 카카오맵, 구글 비즈니스 프로필. 제가 넣을 문구를 정리해 드리면 사장님 계정으로 수정합니다.</p></div><div class="task"><div class="task-head"><b>소개글 바꾸기</b><span class="who me">제가</span></div><p>손님이 실제로 검색하는 말이 들어간 소개글을 플랫폼별로 써 드립니다.</p></div><div class="task"><div class="task-head"><b>가게 공식 소개 페이지 공개</b><span class="who me">제가</span></div><p>이미 초안이 있습니다. 정보 확인이 끝나면 공개합니다. AI가 읽기 쉬운 형식이 들어가 있습니다.</p></div><div class="task"><div class="task-head"><b>첫 AI 측정</b><span class="who me">제가</span></div><p>ChatGPT와 Perplexity에 손님 질문을 던져서 지금 우리 가게가 나오는지 기록합니다. 이게 출발점입니다.</p></div></div></div></div>
+<div class="phase"><div class="rail"><span class="dot"></span><span class="line"></span></div><div class="phase-body"><span class="when">1~3개월</span><h2>다른 곳에서도 말하게 합니다</h2><div class="tasks"><div class="task"><div class="task-head"><b>리뷰 답글 습관 만들기</b><span class="who owner">사장님</span></div><p>리뷰마다 짧게 답글을 답니다. 손님이 온 상황(2차, 회식, 혼밥 등)을 한 번 더 적어주면 좋습니다.</p></div><div class="task"><div class="task-head"><b>블로거·체험단 안내문</b><span class="who me">제가</span></div><p>체험단에게 줄 정확한 정보와 키워드를 한 장으로 만들어 드립니다. 섭외는 사장님이 해주시면 됩니다.</p></div><div class="task"><div class="task-head"><b>인스타에 기본 정보 고정</b><span class="who owner">사장님</span></div><p>프로필 소개와 고정 게시물에 위치, 영업시간, 대표 메뉴를 넣어둡니다.</p></div></div></div></div>
+<div class="phase"><div class="rail"><span class="dot"></span><span class="line"></span></div><div class="phase-body"><span class="when">매달</span><h2>확인하고 고칩니다</h2><div class="tasks"><div class="task"><div class="task-head"><b>AI 측정 리포트</b><span class="who me">제가</span></div><p>같은 질문을 매달 다시 물어보고 변화를 짧게 정리해 드립니다.</p></div><div class="task"><div class="task-head"><b>정보 바뀌면 바로 알려주기</b><span class="who owner">사장님</span></div><p>영업시간, 메뉴, 휴무가 바뀌면 알려주세요. 세 곳을 한 번에 고칩니다.</p></div></div></div></div></section>
+<section>
+  <p class="eyebrow">기억할 것</p>
+  <h2>원칙 세 가지</h2>
+  <ul>
+    <li><b>확인된 정보만 씁니다.</b> 모르는 건 비워두고 여쭤봅니다.</li>
+    <li><b>어디서나 같은 정보.</b> 지도, 인스타, 블로그 내용을 하나로 맞춥니다.</li>
+    <li><b>가짜 리뷰는 안 합니다.</b> 걸리면 노출이 오히려 줄어듭니다.</li>
+  </ul>
+  <p class="note">바로 뜨지는 않습니다. 몇 달 꾸준히 쌓고, 매달 숫자로 확인합니다.</p>
+</section>
+</div>
